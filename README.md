@@ -1,7 +1,7 @@
 # online_e-BH
 
 This repository contains the R code for reproducing the results in the paper "An online generalization of the
-(e-)Benjamini-Hochberg procedure" (https://arxiv.org/abs/2407.20683). In the aforementioned paper, we introduced the concept of online ARC (online with acceptance-to-rejection changes) procedures and propose the online e-BH and online BH procedures as concrete algorithms. We prove that the online e-BH procedure provides SupFDR control and therefore controls the FDR at arbitrary stopping times. The online BH procedure controls the OnlineFDR under PRDS and the SupFDR PRDN/WNDN at level \alpha(1+\log(1/\alpha)).
+(e-)Benjamini-Hochberg procedure" (https://arxiv.org/abs/2407.20683). In the aforementioned paper, we introduced the concept of online ARC (online with acceptance-to-rejection changes) procedures and propose the online e-BH and online BH procedures as concrete algorithms. We prove that the online e-BH procedure provides SupFDR control and therefore controls the FDR at arbitrary stopping times. The online BH procedure controls the OnlineFDR under PRDS and the SupFDR under PRDN/WNDN at level \alpha(1+\log(1/\alpha)).
 
 Files:
 
