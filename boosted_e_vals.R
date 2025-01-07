@@ -1,9 +1,9 @@
 #This file contains the functions for boosting the e-values used in the paper 
-#"An online generalization of the e-BH procedure"
+#"An online generalization of the (e-)Benjamini-Hochberg procedure"
 
-###Boosting with truncation function (6)
+###Boosting as in Example 1 with + adjustment
 ##Input:
-#s:       Cutoff value for the truncation function, natural number.
+#s:       cutoff value for the truncation function, natural number.
 #alpha:   overall significance level, real number between 0 and 1.
 #gamma:   weighting sequence, n-dim. vector of real numbers between 0 and 1 with sum less than or equal to 1.
 #delta:   Parameter used for boosting the e-values, positive real number. In case of the simple null 
@@ -19,7 +19,7 @@ b_factor=function(b){
 return(uniroot(b_factor, lower=0, upper=10000)$root)
 }
 
-###Boosting with truncation function (7)
+###Boosting as in Example 1 with - adjustment
 ##Input:
 #s:       cutoff value for the truncation function, natural number.
 #alpha:   overall significance level, real number between 0 and 1.
@@ -36,7 +36,7 @@ e_boosted_minus=function(s, alpha, gamma, delta){
   return(uniroot(b_factor, lower=0, upper=1000000)$root)
 }
 
-###Boosting with truncation function (8) with + adjustment
+###Boosting as in Example 2 with + adjustment
 ##Input:
 #s:       cutoff value for the truncation function, natural number.
 #alpha:   overall significance level, real number between 0 and 1.
@@ -57,7 +57,7 @@ e_boosted_plus_local=function(s, alpha, gamma, delta, num_rej){
   return(uniroot(b_factor, lower=0, upper=10000)$root)
 }
 
-###Boosting with truncation function (8) with - adjustment
+###Boosting as in Example 2 with - adjustment
 ##Input:
 #s:       cutoff value for the truncation function, natural number.
 #alpha:   overall significance level, real number between 0 and 1.

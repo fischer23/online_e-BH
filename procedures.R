@@ -1,5 +1,5 @@
 #This file contains the procedures analyzed in the paper 
-#"An online generalization of the e-BH procedure"
+#"An online generalization of the (e-)Benjamini-Hochberg procedure"
 
 ###online e-BH
 
@@ -92,5 +92,49 @@ e_lond=function(alpha, gamma, e, n){
   for(i in 1:n){
     rejects[i]=(e[i]>= 1/(alpha * gamma[i] * (sum(rejects)+1)))
   }
+  return(rejects)
+} 
+
+
+###online BH
+
+#Input:
+
+#alpha:   overall significance level, real number between 0 and 1.
+#gamma:   weighting sequence, n-dim. vector of real numbers between 0 and 1 with sum less than or equal to 1.
+#p:       p-values, n-dim. vector of real numbers between 0 and 1.
+#n:       number of hypotheses, natural number.
+
+#Output:
+
+#rejects: n-dim. vector of rejection indicators
+
+online_bh=function(alpha, gamma, p, n){
+  min_rej=n-rowSums((p<=((alpha*gamma)%*%t(1:n))))+1
+  k_star=max(c(which(colSums(outer(min_rej,(1:n), '<='))>=(1:n)),1))
+  rejects=(p<=(alpha*gamma*k_star))
+  return(rejects)
+} 
+
+
+###online Storey-BH
+
+#Input:
+
+#alpha:   overall significance level, real number between 0 and 1.
+#gamma:   weighting sequence, n-dim. vector of real numbers between 0 and 1 with sum less than or equal to 1.
+#lambda:  Adaptivity parameter for Storey-BH, real number between alpha and 1.
+#p:       p-values, n-dim. vector of real numbers between 0 and 1.
+#n:       number of hypotheses, natural number.
+
+#Output:
+
+#rejects: n-dim. vector of rejection indicators
+
+online_storey_bh=function(alpha, gamma, lambda, p, n){
+  pi_hat=(max(gamma)+sum(gamma*(p>lambda))+(1-sum(gamma)))/(1-lambda)
+  min_rej=n-rowSums((p<=((alpha*gamma/pi_hat)%*%t(1:n))))+1
+  k_star=max(c(which(colSums(outer(min_rej,(1:n), '<='))>=(1:n)),1))
+  rejects=(p<=(alpha*gamma*k_star/pi_hat))
   return(rejects)
 } 
