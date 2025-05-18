@@ -1,159 +1,186 @@
-#Generates all plots of the paper "An online generalization of the e-BH procedure"
+# Generates all plots of the paper "An online generalization of the e-BH procedure"
 
 library(ggplot2)
 library(MASS)
 library(patchwork)
 
-###Figure 1
+### Figure 1
 
 load("results/weak_signal.rda")
 
-p1=ggplot(results_df, aes(pi_A)) + 
-  geom_line(aes(y = power_online_e_bh, colour = "1")) + 
+p1 <- ggplot(results_df, aes(pi_A)) +
+  geom_line(aes(y = power_online_e_bh, colour = "1")) +
   geom_point(aes(y = power_online_e_bh, colour = "1", shape = "1")) +
-  geom_line(aes(y = power_e_lond, colour = "2")) + 
+  geom_line(aes(y = power_e_lond, colour = "2")) +
   geom_point(aes(y = power_e_lond, colour = "2", shape = "2")) +
-  scale_colour_manual(name = "Procedure", values=c("1"="skyblue", "2"="limegreen"), labels=c("1"="online e-BH", "2"="e-LOND"))+
-  scale_shape_manual(name = "Procedure", values = c("1"=1, "2"=2), labels=c("1"="online e-BH", "2"="e-LOND"))+
-  xlab("Proportion of false hypotheses")+
-  ylab("Power")+
-  scale_x_continuous(breaks = seq(0.2,0.8,0.2), limits=c(0.1,0.9),expand = c(0, 0))+
-  scale_y_continuous(breaks = seq(0,1.2,0.2), limits=c(0,1),expand = c(0, 0))+
-  theme(panel.background = element_blank(),panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.border = element_rect(colour = "black", fill=NA, size=1), 
-        axis.title.y = element_text(size=20), axis.title.x = element_text(size=20),
-        legend.text=element_text(size=20), legend.title=element_text(size=20), strip.text.x = element_text(size = 15),
-        strip.text.y = element_text(size = 15))
+  scale_colour_manual(name = "Procedure", values = c("1" = "skyblue", "2" = "limegreen"), labels = c("1" = "online e-BH", "2" = "e-LOND")) +
+  scale_shape_manual(name = "Procedure", values = c("1" = 1, "2" = 2), labels = c("1" = "online e-BH", "2" = "e-LOND")) +
+  xlab("Proportion of false hypotheses") +
+  ylab("Power") +
+  scale_x_continuous(breaks = seq(0.2, 0.8, 0.2), limits = c(0.1, 0.9), expand = c(0, 0)) +
+  scale_y_continuous(breaks = seq(0, 1.2, 0.2), limits = c(0, 1), expand = c(0, 0)) +
+  theme(
+    panel.background = element_blank(), panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.border = element_rect(colour = "black", fill = NA, size = 1),
+    axis.title.y = element_text(size = 20), axis.title.x = element_text(size = 20),
+    legend.text = element_text(size = 20), legend.title = element_text(size = 20), strip.text.x = element_text(size = 15),
+    strip.text.y = element_text(size = 15)
+  )
 
 load("results/strong_signal.rda")
 
-p2=ggplot(results_df, aes(pi_A)) + 
-  geom_line(aes(y = power_online_e_bh, colour = "1")) + 
+p2 <- ggplot(results_df, aes(pi_A)) +
+  geom_line(aes(y = power_online_e_bh, colour = "1")) +
   geom_point(aes(y = power_online_e_bh, colour = "1", shape = "1")) +
-  geom_line(aes(y = power_e_lond, colour = "2")) + 
+  geom_line(aes(y = power_e_lond, colour = "2")) +
   geom_point(aes(y = power_e_lond, colour = "2", shape = "2")) +
-  scale_colour_manual(name = "Procedure", values=c("1"="skyblue", "2"="limegreen"), labels=c("1"="online e-BH", "2"="e-LOND"))+
-  scale_shape_manual(name = "Procedure", values = c("1"=1, "2"=2), labels=c("1"="online e-BH", "2"="e-LOND"))+
-  xlab("Proportion of false hypotheses")+
-  ylab("Power")+
-  scale_x_continuous(breaks = seq(0.2,0.8,0.2), limits=c(0.1,0.9),expand = c(0, 0))+
-  scale_y_continuous(breaks = seq(0,1.2,0.2), limits=c(0,1),expand = c(0, 0))+
-  theme(panel.background = element_blank(),panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.border = element_rect(colour = "black", fill=NA, size=1), 
-        axis.title.y = element_text(size=20), axis.title.x = element_text(size=20),
-        legend.text=element_text(size=20), legend.title=element_text(size=20), strip.text.x = element_text(size = 15),
-        strip.text.y = element_text(size = 15))
+  scale_colour_manual(name = "Procedure", values = c("1" = "skyblue", "2" = "limegreen"), labels = c("1" = "online e-BH", "2" = "e-LOND")) +
+  scale_shape_manual(name = "Procedure", values = c("1" = 1, "2" = 2), labels = c("1" = "online e-BH", "2" = "e-LOND")) +
+  xlab("Proportion of false hypotheses") +
+  ylab("Power") +
+  scale_x_continuous(breaks = seq(0.2, 0.8, 0.2), limits = c(0.1, 0.9), expand = c(0, 0)) +
+  scale_y_continuous(breaks = seq(0, 1.2, 0.2), limits = c(0, 1), expand = c(0, 0)) +
+  theme(
+    panel.background = element_blank(), panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.border = element_rect(colour = "black", fill = NA, size = 1),
+    axis.title.y = element_text(size = 20), axis.title.x = element_text(size = 20),
+    legend.text = element_text(size = 20), legend.title = element_text(size = 20), strip.text.x = element_text(size = 15),
+    strip.text.y = element_text(size = 15)
+  )
 
-combined = p1 + p2  & theme(legend.position = "bottom")
-combined = combined + plot_layout(guides = "collect")
+combined <- p1 + p2 & theme(legend.position = "bottom")
+combined <- combined + plot_layout(guides = "collect")
 
-ggsave("results/Plot_e_lond.pdf", plot=combined, width=12, height=4.5)
+ggsave("results/Plot_e_lond.pdf", plot = combined, width = 12, height = 4.5)
 
-###Figure 2
-
-load("results/strong_signal.rda")
-
-
-p1=ggplot(results_df, aes(pi_A)) + 
-  geom_line(aes(y = power_online_e_bh, colour = "1")) + 
-  geom_point(aes(y = power_online_e_bh, colour = "1", shape = "1")) +
-  geom_line(aes(y = power_online_e_bh_boosted, colour = "2")) + 
-  geom_point(aes(y = power_online_e_bh_boosted, colour = "2", shape = "2")) +
-  scale_colour_manual(name = "Online e-BH", values=c("1"="skyblue", "2"="cornflowerblue", "3"="magenta"), 
-                      labels=c("1"="non-boosted", "2"="boosted", "3"="boosted under local dependence"))+
-  scale_shape_manual(name = "Online e-BH", values = c("1"=1, "2"=6, "3"=8), 
-                     labels=c("1"="non-boosted", "2"="boosted", "3"="boosted under local dependence"))+
-  xlab("Proportion of false hypotheses")+
-  ylab("Power")+
-  scale_x_continuous(breaks = seq(0.2,0.8,0.2), limits=c(0.1,0.9),expand = c(0, 0))+
-  scale_y_continuous(breaks = seq(0,1.2,0.2), limits=c(0,1),expand = c(0, 0))+
-  theme(panel.background = element_blank(),panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.border = element_rect(colour = "black", fill=NA, size=1), 
-        axis.title.y = element_text(size=20), axis.title.x = element_text(size=20),
-        legend.text=element_text(size=20), legend.title=element_text(size=20), strip.text.x = element_text(size = 15),
-        strip.text.y = element_text(size = 15))
-
+### Figure 2
 
 load("results/strong_signal.rda")
 
-p2=ggplot(results_df, aes(pi_A)) + 
-  geom_line(aes(y = power_online_e_bh, colour = "1")) + 
+
+p1 <- ggplot(results_df, aes(pi_A)) +
+  geom_line(aes(y = power_online_e_bh, colour = "1")) +
   geom_point(aes(y = power_online_e_bh, colour = "1", shape = "1")) +
-  geom_line(aes(y = power_online_e_bh_boosted, colour = "2")) + 
+  geom_line(aes(y = power_online_e_bh_boosted, colour = "2")) +
   geom_point(aes(y = power_online_e_bh_boosted, colour = "2", shape = "2")) +
-  scale_colour_manual(name = "Online e-BH", values=c("1"="skyblue", "2"="cornflowerblue", "3"="magenta"), 
-                      labels=c("1"="non-boosted", "2"="boosted", "3"="boosted under local dependence"))+
-  scale_shape_manual(name = "Online e-BH", values = c("1"=1, "2"=6, "3"=8), 
-                     labels=c("1"="non-boosted", "2"="boosted", "3"="boosted under local dependence"))+
-  xlab("Proportion of false hypotheses")+
-  ylab("Power")+
-  scale_x_continuous(breaks = seq(0.2,0.8,0.2), limits=c(0.1,0.9),expand = c(0, 0))+
-  scale_y_continuous(breaks = seq(0,1.2,0.2), limits=c(0,1),expand = c(0, 0))+
-  theme(panel.background = element_blank(),panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.border = element_rect(colour = "black", fill=NA, size=1), 
-        axis.title.y = element_text(size=20), axis.title.x = element_text(size=20),
-        legend.text=element_text(size=20), legend.title=element_text(size=20), strip.text.x = element_text(size = 15),
-        strip.text.y = element_text(size = 15))
+  scale_colour_manual(
+    name = "Online e-BH", values = c("1" = "skyblue", "2" = "cornflowerblue", "3" = "magenta"),
+    labels = c("1" = "non-boosted", "2" = "boosted", "3" = "boosted under local dependence")
+  ) +
+  scale_shape_manual(
+    name = "Online e-BH", values = c("1" = 1, "2" = 6, "3" = 8),
+    labels = c("1" = "non-boosted", "2" = "boosted", "3" = "boosted under local dependence")
+  ) +
+  xlab("Proportion of false hypotheses") +
+  ylab("Power") +
+  scale_x_continuous(breaks = seq(0.2, 0.8, 0.2), limits = c(0.1, 0.9), expand = c(0, 0)) +
+  scale_y_continuous(breaks = seq(0, 1.2, 0.2), limits = c(0, 1), expand = c(0, 0)) +
+  theme(
+    panel.background = element_blank(), panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.border = element_rect(colour = "black", fill = NA, size = 1),
+    axis.title.y = element_text(size = 20), axis.title.x = element_text(size = 20),
+    legend.text = element_text(size = 20), legend.title = element_text(size = 20), strip.text.x = element_text(size = 15),
+    strip.text.y = element_text(size = 15)
+  )
 
-combined = p1 + p2  & theme(legend.position = "bottom")
-combined = combined + plot_layout(guides = "collect")
 
-ggsave("results/Plot_boosted.pdf", plot=combined, width=12, height=4.5)
+load("results/strong_signal.rda")
+
+p2 <- ggplot(results_df, aes(pi_A)) +
+  geom_line(aes(y = power_online_e_bh, colour = "1")) +
+  geom_point(aes(y = power_online_e_bh, colour = "1", shape = "1")) +
+  geom_line(aes(y = power_online_e_bh_boosted, colour = "2")) +
+  geom_point(aes(y = power_online_e_bh_boosted, colour = "2", shape = "2")) +
+  scale_colour_manual(
+    name = "Online e-BH", values = c("1" = "skyblue", "2" = "cornflowerblue", "3" = "magenta"),
+    labels = c("1" = "non-boosted", "2" = "boosted", "3" = "boosted under local dependence")
+  ) +
+  scale_shape_manual(
+    name = "Online e-BH", values = c("1" = 1, "2" = 6, "3" = 8),
+    labels = c("1" = "non-boosted", "2" = "boosted", "3" = "boosted under local dependence")
+  ) +
+  xlab("Proportion of false hypotheses") +
+  ylab("Power") +
+  scale_x_continuous(breaks = seq(0.2, 0.8, 0.2), limits = c(0.1, 0.9), expand = c(0, 0)) +
+  scale_y_continuous(breaks = seq(0, 1.2, 0.2), limits = c(0, 1), expand = c(0, 0)) +
+  theme(
+    panel.background = element_blank(), panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.border = element_rect(colour = "black", fill = NA, size = 1),
+    axis.title.y = element_text(size = 20), axis.title.x = element_text(size = 20),
+    legend.text = element_text(size = 20), legend.title = element_text(size = 20), strip.text.x = element_text(size = 15),
+    strip.text.y = element_text(size = 15)
+  )
+
+combined <- p1 + p2 & theme(legend.position = "bottom")
+combined <- combined + plot_layout(guides = "collect")
+
+ggsave("results/Plot_boosted.pdf", plot = combined, width = 12, height = 4.5)
 
 
-###Figure 3
+### Figure 3
 
 load("results/weak_signal.rda")
 
-p1=ggplot(results_df, aes(pi_A)) + 
-  geom_line(aes(y = power_online_e_bh_boosted_local, colour = "3")) + 
+p1 <- ggplot(results_df, aes(pi_A)) +
+  geom_line(aes(y = power_online_e_bh_boosted_local, colour = "3")) +
   geom_point(aes(y = power_online_e_bh_boosted_local, colour = "3", shape = "3")) +
-  geom_line(aes(y = power_online_e_bh_boosted, colour = "2")) + 
+  geom_line(aes(y = power_online_e_bh_boosted, colour = "2")) +
   geom_point(aes(y = power_online_e_bh_boosted, colour = "2", shape = "2")) +
-  scale_colour_manual(name = "Online e-BH", values=c("1"="skyblue", "2"="cornflowerblue", "3"="magenta"), 
-                      labels=c("1"="non-boosted", "2"="boosted (under arbitrary dependence)", "3"="boosted under local dependence"))+
-  scale_shape_manual(name = "Online e-BH", values = c("1"=1, "2"=6, "3"=8), 
-                     labels=c("1"="non-boosted", "2"="boosted (under arbitrary dependence)", "3"="boosted under local dependence"))+
-  xlab("Proportion of false hypotheses")+
-  ylab("Power")+
-  scale_x_continuous(breaks = seq(0.2,0.8,0.2), limits=c(0.1,0.9),expand = c(0, 0))+
-  scale_y_continuous(breaks = seq(0,1.2,0.2), limits=c(0,1),expand = c(0, 0))+
-  theme(panel.background = element_blank(),panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.border = element_rect(colour = "black", fill=NA, size=1), 
-        axis.title.y = element_text(size=20), axis.title.x = element_text(size=20),
-        legend.text=element_text(size=20), legend.title=element_text(size=20), strip.text.x = element_text(size = 15),
-        strip.text.y = element_text(size = 15))
+  scale_colour_manual(
+    name = "Online e-BH", values = c("1" = "skyblue", "2" = "cornflowerblue", "3" = "magenta"),
+    labels = c("1" = "non-boosted", "2" = "boosted (under arbitrary dependence)", "3" = "boosted under local dependence")
+  ) +
+  scale_shape_manual(
+    name = "Online e-BH", values = c("1" = 1, "2" = 6, "3" = 8),
+    labels = c("1" = "non-boosted", "2" = "boosted (under arbitrary dependence)", "3" = "boosted under local dependence")
+  ) +
+  xlab("Proportion of false hypotheses") +
+  ylab("Power") +
+  scale_x_continuous(breaks = seq(0.2, 0.8, 0.2), limits = c(0.1, 0.9), expand = c(0, 0)) +
+  scale_y_continuous(breaks = seq(0, 1.2, 0.2), limits = c(0, 1), expand = c(0, 0)) +
+  theme(
+    panel.background = element_blank(), panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.border = element_rect(colour = "black", fill = NA, size = 1),
+    axis.title.y = element_text(size = 20), axis.title.x = element_text(size = 20),
+    legend.text = element_text(size = 20), legend.title = element_text(size = 20), strip.text.x = element_text(size = 15),
+    strip.text.y = element_text(size = 15)
+  )
 
 
 load("results/strong_signal.rda")
 
-p2=ggplot(results_df, aes(pi_A)) + 
-  geom_line(aes(y = power_online_e_bh_boosted_local, colour = "3")) + 
+p2 <- ggplot(results_df, aes(pi_A)) +
+  geom_line(aes(y = power_online_e_bh_boosted_local, colour = "3")) +
   geom_point(aes(y = power_online_e_bh_boosted_local, colour = "3", shape = "3")) +
-  geom_line(aes(y = power_online_e_bh_boosted, colour = "2")) + 
+  geom_line(aes(y = power_online_e_bh_boosted, colour = "2")) +
   geom_point(aes(y = power_online_e_bh_boosted, colour = "2", shape = "2")) +
-  scale_colour_manual(name = "Online e-BH", values=c("1"="skyblue", "2"="cornflowerblue", "3"="magenta"), 
-                      labels=c("1"="non-boosted", "2"="boosted (under arbitrary dependence)", "3"="boosted under local dependence"))+
-  scale_shape_manual(name = "Online e-BH", values = c("1"=1, "2"=6, "3"=8), 
-                     labels=c("1"="non-boosted", "2"="boosted (under arbitrary dependence)", "3"="boosted under local dependence"))+
-  xlab("Proportion of false hypotheses")+
-  ylab("Power")+
-  scale_x_continuous(breaks = seq(0.2,0.8,0.2), limits=c(0.1,0.9),expand = c(0, 0))+
-  scale_y_continuous(breaks = seq(0,1.2,0.2), limits=c(0,1),expand = c(0, 0))+
-  theme(panel.background = element_blank(),panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.border = element_rect(colour = "black", fill=NA, size=1), 
-        axis.title.y = element_text(size=20), axis.title.x = element_text(size=20),
-        legend.text=element_text(size=20), legend.title=element_text(size=20), strip.text.x = element_text(size = 15),
-        strip.text.y = element_text(size = 15))
+  scale_colour_manual(
+    name = "Online e-BH", values = c("1" = "skyblue", "2" = "cornflowerblue", "3" = "magenta"),
+    labels = c("1" = "non-boosted", "2" = "boosted (under arbitrary dependence)", "3" = "boosted under local dependence")
+  ) +
+  scale_shape_manual(
+    name = "Online e-BH", values = c("1" = 1, "2" = 6, "3" = 8),
+    labels = c("1" = "non-boosted", "2" = "boosted (under arbitrary dependence)", "3" = "boosted under local dependence")
+  ) +
+  xlab("Proportion of false hypotheses") +
+  ylab("Power") +
+  scale_x_continuous(breaks = seq(0.2, 0.8, 0.2), limits = c(0.1, 0.9), expand = c(0, 0)) +
+  scale_y_continuous(breaks = seq(0, 1.2, 0.2), limits = c(0, 1), expand = c(0, 0)) +
+  theme(
+    panel.background = element_blank(), panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.border = element_rect(colour = "black", fill = NA, size = 1),
+    axis.title.y = element_text(size = 20), axis.title.x = element_text(size = 20),
+    legend.text = element_text(size = 20), legend.title = element_text(size = 20), strip.text.x = element_text(size = 15),
+    strip.text.y = element_text(size = 15)
+  )
 
-combined = p1 + p2  & theme(legend.position = "bottom")
-combined = combined + plot_layout(guides = "collect")
+combined <- p1 + p2 & theme(legend.position = "bottom")
+combined <- combined + plot_layout(guides = "collect")
 
-ggsave("results/Plot_boosted_local.pdf", plot=combined, width=12, height=4.5)
-
+ggsave("results/Plot_boosted_local.pdf", plot = combined, width = 12, height = 4.5)
