@@ -1,7 +1,6 @@
 #Generates all plots of the paper "An online generalization of the (e-)Benjamini-Hochberg procedure"
 
 library(ggplot2)
-library(MASS)
 library(patchwork)
 
 ###Figure 1
@@ -262,7 +261,5 @@ combined = p1 + p2  & theme(legend.position = "bottom")
 combined = combined + plot_layout(guides = "collect")
 
 ggsave("results/Plot_SAFFRON.pdf", plot=combined, width=12, height=4.5)
-
-
 
 
